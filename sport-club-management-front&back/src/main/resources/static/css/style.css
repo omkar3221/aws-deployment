@@ -1,0 +1,86 @@
+@font-face {
+    font-family: Proxima;
+    src: url(/css/proximanova-regular-webfont.woff);
+}
+
+.intro-section{
+    font-family: Proxima;
+    background-color: rgb(192, 192, 192);
+    padding: 20px 10% 20px 10%;
+}
+
+.history-section{
+    font-family: Proxima;
+    background-color: rgb(192, 192, 192);
+    padding: 20px 10% 20px 10%;
+}
+
+.Rules-section{
+    font-family: Proxima;
+    background-color: rgb(192, 192, 192);
+    padding: 20px 10% 20px 10%;
+}
+
+.member-register-section{
+    font-family: Proxima;
+    background-color: rgb(192, 192, 192);
+    padding: 20px 10% 20px 10%;
+}
+
+.table-section{
+  font-family: Proxima;
+  background-color: #FFFFFF;
+  padding: 20px 10% 20px 10%;
+}
+
+.new-h2 {
+  font-weight: 600;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  font-size: 3rem;
+}
+
+
+.entroll-form {
+  font-family: Proxima;
+  margin: 10px 15% 10px 15%;
+}
+
+.entroll{
+  background-color: #FFFFFF;
+  /* border: 4px solid #FFFFFF; */
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 500px;
+ }
+
+.navbar.navbar-expand-md.bg-dark.navbar-dark{
+    background-color: #2296BC!important;
+    font-weight: bold;
+}
+
+.navbar-brand{
+    font-size: 28px;
+}
+
+.card:hover{
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,1), 0 4px 8px rgba(0,0,0,1);
+            /* background: linear-gradient(45deg,rgba(29, 236, 197, 0.5) rgba(91, 14, 214, 0.5) 100%); */
+            /* border-color: rgb(0, 0, 0); */
+            border-color: rgba(13, 110, 253, 100);
+          	}
+        
+.card {
+            transition: all 0.2s ease;
+            cursor: pointer
+            /* height: 200px;
+            width : 200px;
+            border: 1px solid black; */
+            /* transition: 0.3s;
+            margin: 3rem; */
+        }

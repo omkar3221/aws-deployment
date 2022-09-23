@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Join Membership</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="/">SportClub</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link"  href="/admin/member-approval/list" th:if="${#authentication.getPrincipal().getUserEntity().getUserType() == 'ADMIN'}">Member Approvals</a>
+            </li>
+
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a href="/admin/manager/list" th:if="${#authentication.getPrincipal().getUserEntity().getUserType() == 'ADMIN'}">Manager List</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAnonymous()">
+                <a class="nav-link" href="/member/registration">Apply Membership</a>
+            </li>
+
+            <li class="nav-item" sec:authorize="isAnonymous()">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/logout">Sign Out</a>
+            </li>
+
+
+
+        </ul>
+    </div>
+</nav>
+
+<section class="member-register-section">
+    <div class="entroll-form">
+        <h1 class="text-center" th:text="${add} ? 'Apply for Membership' : 'Edit:'"/>
+        <form class="entroll" th:action="${add} ? @{/member/registration/add} : @{/member/registration/{userId}/edit(userId=${contact.id})}"
+              th:object="${contact}" method="POST" onSubmit="return onBeforeFormSubmit();">
+            <div class="form-group">
+                <label for="Name"> First Name </label> :
+                <input type="text" th:field="*{firstName}"  class="form-control"
+                       placeholder="First Name" autofocus="autofocus">
+            </div>
+
+            <div class="form-group">
+                <label for="Name"> Last Name </label> :
+                <input type="text" th:field="*{lastName}"  class="form-control"
+                       placeholder="Last Name">
+            </div>
+
+            <div class="form-group">
+                <label for="Name"> Email </label> :
+                <input type="text" th:field="*{email}"  class="form-control"
+                       placeholder="Email">
+            </div>
+
+            <div class="form-group">
+                <label for="Name"> Password</label> :
+                <input type="password" th:field="*{password}"
+                       placeholder="Last Name"  class="form-control" required>
+            </div>
+
+			<div class="form-group">
+                <label for="birthdate">Date of birth</label> :
+                <div class="input-group date">
+                    <input type="date" class="form-control" id="birthdate" autocomplete="off" th:field="*{birthDate}"/>
+                </div>
+            </div>
+            
+            <div class="form-group">
+            	<label for="Gender">Gender</label> :
+            	<select th:field="*{gender}">
+    				<option th:value="'Male'" th:text="Male"></option>
+    				<option th:value="'Female'" th:text="Female"></option>
+				</select>
+			</div>
+            <div class="form-group">
+                <label for="comment">Address:</label>
+                <textarea class="form-control" rows="5" th:field="*{address}"  ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notes:</label>
+                <textarea class="form-control" rows="5" th:field="*{notes}"  ></textarea>
+            </div>
+            <input class="btn btn-primary" type="submit" th:value="${add} ? 'Register' : 'Update'"/>
+
+            <div
+                    id="email_alert"
+                    class="alert alert-danger"
+                    style="display: none"
+            >
+                <strong>Email!</strong> Please provide valid Email.
+            </div>
+
+            <div id="name_alert" class="alert alert-danger" style="display: none">
+                <strong> First Name!</strong> Please provide First Name.
+            </div>
+
+            <div id="address_alert" class="alert alert-danger" style="display: none">
+                <strong> Address!</strong> Please provide Address.
+            </div>
+        </form>
+    </div>
+</section>
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="/js/member.js"></script>
+
+
+
+<div th:replace="fragment/footer :: footer"></div>
+</body>
+</html>

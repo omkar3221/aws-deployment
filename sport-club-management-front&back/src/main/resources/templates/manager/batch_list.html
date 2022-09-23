@@ -1,0 +1,46 @@
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragment/header :: header"></head>
+<body>
+
+<div th:replace="fragment/navbar :: navbar"></div>
+
+
+<div class="table-section">
+    <a class="btn btn-info" th:href="@{/}">Back to Home</a>
+    
+    <a class="btn btn-info" th:href="@{/manager/batch/add}">Add Batch</a>
+    <br/>
+    <br/>
+    <h2 class="new-h2">Batch List</h2>
+    <table class="table table-hover table-striped table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Batch Date</th>
+                <th>Batch Time</th>
+                <th>Sport</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each ="contact : ${contacts}">
+                <td><a th:utext="${contact.id}">...</a></td>
+                <td><a th:utext="${contact.batchName}">...</a></td>
+                <td th:utext="${contact.batchDate}">...</td>
+                <td th:utext="${contact.batchTime}">...</td>
+                <td th:utext="${contact.sport.sportName}">...</td>
+                <td>
+                    <a class="btn btn-info" th:href="@{/manager/batch/edit/} + ${contact.id}">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br/><br/>
+
+
+<div th:replace="fragment/footer :: footer"></div>
+</body>
+</html>

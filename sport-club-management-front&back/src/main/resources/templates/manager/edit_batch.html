@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragment/header :: header"></head>
+<body>
+
+<div th:replace="fragment/navbar :: navbar"></div>
+
+<section class="member-register-section">
+    <div class="entroll-form">
+        <h1 class="text-center" >Edit Batch</h1>
+        <form class="entroll" th:action="@{/manager/batch/edit/} + ${contact.Id}"
+              th:object="${contact}" enctype="multipart/form-data" method="POST">
+            <input type="hidden" th:field="*{Id}"  >
+            <div class="form-group">
+                <label for="Name"> Batch Name </label> :
+                <input type="text" th:field="*{batchName}"  class="form-control"
+                       placeholder="Sport Name" autofocus="autofocus" required>
+            </div>
+
+
+            <div class="form-group">
+                <label > Batch Date </label> :
+                <input type="date" th:field="*{batchDate}"  class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label > Batch Time </label> :
+                <input type="text" th:field="*{batchTime}"  class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label >Sport:</label>
+                <select  class="form-control" required="required"
+                         name="sport" >
+                    <option th:each="sport : ${sportList}"
+                            th:value="${sport.Id}"
+                            th:selected="${contact.sport.Id eq sport.Id}"
+                            th:text="${sport.sportName}" >
+                    </option>
+                </select>
+            </div>
+
+
+            <input class="btn btn-primary" type="submit" th:value="${add} ? 'Add' : 'Update'"/>
+
+            <div
+                    id="email_alert"
+                    class="alert alert-danger"
+                    style="display: none"
+            >
+                <strong>Email!</strong> Please provide valid Email.
+            </div>
+
+            <div id="name_alert" class="alert alert-danger" style="display: none">
+                <strong> First Name!</strong> Please provide First Name.
+            </div>
+
+            <div id="address_alert" class="alert alert-danger" style="display: none">
+                <strong> Address!</strong> Please provide Address.
+            </div>
+        </form>
+    </div>
+</section>
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="/js/member.js"></script>
+
+
+
+<div th:replace="fragment/footer :: footer"></div>
+</body>
+</html>

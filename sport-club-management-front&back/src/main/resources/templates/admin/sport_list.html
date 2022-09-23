@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragment/header :: header"></head>
+<body>
+
+<div th:replace="fragment/navbar :: navbar"></div>
+
+
+<div class="container">
+    <h1>Sport List</h1>
+    <a  class="btn btn-info" th:href="@{/admin/sport/add}">Add Sport</a>
+</div>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" th:each="contact : ${contacts}">
+            <div class="card">
+                <img class="card-img-top" th:src="@{/member/image/}+${contact.sportImage1}" style="width:100%; height:200px;" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title" th:utext="${contact.sportName}"></h4>
+                    <p class="card-text" th:utext="${contact.sportDescription}"></p>
+                    <a th:href="@{/admin/sport/} + ${contact.Id} + '/edit'" class="btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br/><br/>
+
+<div th:replace="fragment/footer :: footer"></div>
+</body>
+</html>
