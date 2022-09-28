@@ -8,10 +8,10 @@ services:
     ports:
     -3307:3306
     enviroments:
-    MYSQL_DATABASE "sportclub"
-    MYSQL_USER "root"
-    MYSQL_ROOT_PASSWORD "omkar7218"
-    MYSQL_PASSWORD "omkar7218"
+    MYSQL_DATABASE: "sportclub"
+    MYSQL_USER: "root"
+    MYSQL_ROOT_PASSWORD: "omkar7218"
+    MYSQL_PASSWORD: "omkar7218"
   
   backend:
     container_name: backend
