@@ -7,7 +7,7 @@ spring:
     name: GoSwiftWeb
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sportclub
+    url: jdbc:mysql://backend/sportclub
     username: root
     password: omkar7218
   jpa:
